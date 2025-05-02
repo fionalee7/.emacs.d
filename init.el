@@ -1,5 +1,7 @@
 (add-to-list 'load-path "/Users/jam/.emacs.d/elpa/eglot/")
 (add-to-list 'load-path "/Users/jam/.emacs.d/elpa/go-mode/")
+(setq minibuffer-follows-selected-frame t)
+(tool-bar-mode 0)
 (cua-mode t)
 (custom-set-variables
  '(custom-enabled-themes '(deeper-blue))
@@ -48,6 +50,8 @@
 (global-set-key (kbd "C-x w") 'delete-other-windows)
 (global-set-key (kbd "M-l") 'kill-whole-line)
 (global-set-key (kbd "M-.") 'set-mark-command)
+(global-set-key (kbd "C-`") 'switch-to-minibuffer)
+
 (autoload 'go-mode "go-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
 
