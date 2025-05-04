@@ -1,5 +1,6 @@
 (add-to-list 'load-path "/Users/jam/.emacs.d/elpa/eglot/")
 (add-to-list 'load-path "/Users/jam/.emacs.d/elpa/go-mode/")
+(load "~/.emacs.d/snippet.el")
 (setq minibuffer-follows-selected-frame t)
 (tool-bar-mode 0)
 (cua-mode t)
@@ -21,7 +22,13 @@
 	(?\" . ?\")
 	(?\[ . ?\])
 	(?\{ . ?\})))
-;; (global-set-key (kbd "C-S-<tab>") 'previous-buffer)		
+;; (global-set-key (kbd "M-m") 'icomplete-forward-completions)
+;; (global-set-key (kbd "M-j") 'icomplete-backward-completions)
+(global-set-key (kbd "M-p") 'hippie-expand)
+(define-key company-active-map (kbd "M-m") 'company-select-next)
+(define-key company-active-map (kbd "M-j") 'company-select-previous)
+(define-key company-search-map (kbd "M-m") 'company-select-next)
+(define-key company-search-map (kbd "M-j") 'company-select-previous)
 (global-set-key (kbd "C-r") 'undo-redo)		
 (global-set-key (kbd "C-f") 'isearch-forward)		
 (global-set-key (kbd "C-s") 'save-buffer)		
@@ -51,6 +58,23 @@
 (global-set-key (kbd "M-l") 'kill-whole-line)
 (global-set-key (kbd "M-.") 'set-mark-command)
 (global-set-key (kbd "C-`") 'switch-to-minibuffer)
+(global-set-key (kbd "C-c m") 'end-of-buffer)
+(global-set-key (kbd "C-c j ") 'beginning-of-buffer)
+
+
+;; (setq hippie-expand-try-functions-list
+;;       '(
+;;         try-expand-dabbrev
+;;         try-expand-dabbrev-all-buffers
+;;         ;; try-expand-dabbrev-from-kill
+;;         try-complete-lisp-symbol-partially
+;;         try-complete-lisp-symbol
+;;         try-complete-file-name-partially
+;;         try-complete-file-name
+;;         ;; try-expand-all-abbrevs
+;;         ;; try-expand-list
+;;         ;; try-expand-line
+;;         ))
 
 (autoload 'go-mode "go-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
@@ -77,8 +101,8 @@
 (setq company-semantic t)
 (setq company-etags t)
 (setq-local company-backends '(company-dabbrev)
-            company-dabbrev-other-buffers nil
-            company-dabbrev-ignore-case nil
+            company-dabbrev-other-buffers t
+            company-dabbrev-ignore-case t
             company-dabbrev-downcase nil)
 (setq company-tooltip-margin 4)
 ;; (global-set-key (kbd "<tab>") #'company-indent-or-complete-common)
